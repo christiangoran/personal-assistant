@@ -25,9 +25,20 @@ log = SHEET.worksheet("log")
 
 data = log.get_all_values()
 
-completion = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-    messages=[{"role": "assistant", "content": "When did the Vietnam war end?"}]
-)
+def get_response(user_input):
 
-print(completion)
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "assistant", "content": user_input}]
+    )
+
+    if completion.choices:
+        return completion.choices[0].message.content
+    else:
+        return "Oops! Something went wrong."
+
+user_input = input("Please enter your question: ")
+
+response = get_response(user_input)
+
+print(response)
