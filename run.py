@@ -30,8 +30,6 @@ def get_user_input():
     Get question input from the user
     """
     while True:
-        print('\nQuestion should contain at least 10 characters.')
-
         user_input = input("Please enter your question: ")
 
         if validate_input(user_input):
@@ -71,14 +69,40 @@ def get_response(user_input):
     else:
         return "Something went wrong, please try again."
 
-user_input = get_user_input()
 
-response = get_response(user_input)
+def main():
 
-print(response)
+    user_input = get_user_input()
+    response = get_response(user_input)
 
-# get_response(user_input)
+    print("ChatGPT: ", response)
 
+
+def validate_name(value):
+    try:
+        if value.isdigit():
+            raise ValueError(f'No, no numbers allowed unless you are a Star Wars droid')
+        elif len(value) < 3:
+            raise ValueError(f"Please enter at least 3 letter as a name.")
+    except ValueError as e:
+        print(f"Invalid data: {e}. Please try again.")
+        return False
+
+    print(f'Welcome {value}, go ahead and ask your question. It should containt at least 10 characters.')
+    return True
+
+def get_name():
+    while True:
+        try:
+            name = input('Please enter your name: ') 
+            if validate_name(name):
+                return name
+        except ValueError:
+            pass       
+
+print('Welcome to my chat terminal')
+name = get_name()            
+main()
 # Exit loop
 
 # Add queries and answers to google sheet chatlog
