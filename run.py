@@ -25,6 +25,7 @@ log = SHEET.worksheet("log")
 
 data = log.get_all_values()
 
+"""
 def get_response(user_input):
 
     completion = openai.ChatCompletion.create(
@@ -35,10 +36,50 @@ def get_response(user_input):
     if completion.choices:
         return completion.choices[0].message.content
     else:
-        return "Oops! Something went wrong."
+        return "Something went wrong, please try again."
 
-user_input = input("Please enter your question: ")
 
 response = get_response(user_input)
 
+
 print(response)
+
+"""
+
+def get_user_input():
+    """
+    Get question input from the user
+    """
+    while True:
+        print('Question should contain at least 10 characters.')
+
+        user_input = input("Please enter your question: ")
+
+        if validate_input(user_input):
+            print('\nPerfect! Please wait a minute and you will get a response.')
+            break
+
+    return user_input
+
+def validate_input(values):
+    """
+    Inside the try, Raises valueError if there aren't more than 10 characters.
+    """
+    try:
+        if len(values) < 10:
+            raise ValueError(
+                f'More than 10 characters required, you provided {len(values)}'
+            )
+    except ValueError as e:
+        print(f'Invalid data: {e}, please try again.')
+        return False
+
+    return True 
+
+get_user_input()
+# get_response(user_input)
+
+# Exit loop
+
+# Add queries and answers to google chatlog
+
