@@ -34,7 +34,7 @@ def get_user_input():
         user_input = input("Please enter your question: ")
 
         if validate_input(user_input):
-            print('\nPerfect! Please wait a minute and you will get a response.\n')
+            print('\nPlease wait a minute.\n')
             break
 
     return user_input
@@ -44,7 +44,10 @@ def validate_input(values):
     Inside the try, Raises valueError if there aren't more than 10 characters.
     """
     try:
-        if len(values) < 10:
+        if values.lower() == "exit":
+            print(f'We are exiting the terminal for you {name}')
+            return True  # "exit" to end the loop
+        elif len(values) < 10:
             raise ValueError(
                 f'More than 10 characters required, you provided {len(values)}'
             )
@@ -70,17 +73,6 @@ def get_response(user_input):
     else:
         return "Something went wrong, please try again."
 
-
-def main():
-
-    user_input = get_user_input()
-    response = get_response(user_input)
-
-    print("ChatGPT: ", response)
-    chat_log(user_input, response)
-    return response    
-
-
 def validate_name(value):
     try:
         if value.isdigit():
@@ -91,7 +83,10 @@ def validate_name(value):
         print(f"Invalid data: {e}. Please try again.")
         return False
 
-    print(f'Welcome {value}, go ahead and ask your question. It should containt at least 10 characters.')
+    print(f'\nWelcome {value}, go ahead and ask your question.\n') 
+    print('The question should containt at least 10 characters')
+    print('and if you would like to leave the program, just type "exit.\n')
+    print('\n     Enjoy!      \n\n')
     return True
 
 def get_name():
@@ -107,10 +102,16 @@ def chat_log(user_input, response):
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     log.append_row([timestamp, name, user_input, response])
 
-print('Welcome to my chat terminal')
-name = get_name()            
+def main():
+   
+    user_input = get_user_input()
+    response = get_response(user_input)
+    print("ChatGPT: ", response)
+    chat_log(user_input, response)
+ 
+print('\nWelcome to my chat terminal\n')     
+name = get_name()        
 main()
 # Exit loop
 
-# Add queries and answers to google sheet chatlog
 
