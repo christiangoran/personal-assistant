@@ -25,38 +25,17 @@ log = SHEET.worksheet("log")
 
 data = log.get_all_values()
 
-"""
-def get_response(user_input):
-
-    completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "assistant", "content": user_input}]
-    )
-
-    if completion.choices:
-        return completion.choices[0].message.content
-    else:
-        return "Something went wrong, please try again."
-
-
-response = get_response(user_input)
-
-
-print(response)
-
-"""
-
 def get_user_input():
     """
     Get question input from the user
     """
     while True:
-        print('Question should contain at least 10 characters.')
+        print('\nQuestion should contain at least 10 characters.')
 
         user_input = input("Please enter your question: ")
 
         if validate_input(user_input):
-            print('\nPerfect! Please wait a minute and you will get a response.')
+            print('\nPerfect! Please wait a minute and you will get a response.\n')
             break
 
     return user_input
@@ -76,10 +55,31 @@ def validate_input(values):
 
     return True 
 
-get_user_input()
+def get_response(user_input):
+    """
+    Takes the user_input, enters it into a variable 'completion'
+    toghether with other directives for chatGPT
+    """
+
+    completion = openai.ChatCompletion.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "assistant", "content": user_input}]
+    )
+
+    if completion.choices:
+        return completion.choices[0].message.content
+    else:
+        return "Something went wrong, please try again."
+
+user_input = get_user_input()
+
+response = get_response(user_input)
+
+print(response)
+
 # get_response(user_input)
 
 # Exit loop
 
-# Add queries and answers to google chatlog
+# Add queries and answers to google sheet chatlog
 
