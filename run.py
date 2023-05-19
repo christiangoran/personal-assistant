@@ -2,6 +2,7 @@ import json
 import requests
 import gspread
 import openai
+import datetime
 from google.oauth2.service_account import Credentials
 
 f = open('creds.json', 'r')
@@ -76,6 +77,8 @@ def main():
     response = get_response(user_input)
 
     print("ChatGPT: ", response)
+    chat_log(user_input, response)
+    return response    
 
 
 def validate_name(value):
@@ -99,6 +102,10 @@ def get_name():
                 return name
         except ValueError:
             pass       
+
+def chat_log(user_input, response):
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    log.append_row([timestamp, name, user_input, response])
 
 print('Welcome to my chat terminal')
 name = get_name()            
