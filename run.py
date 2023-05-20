@@ -4,6 +4,7 @@ import gspread
 import openai
 import datetime
 from google.oauth2.service_account import Credentials
+import pprint
 
 f = open('creds.json', 'r')
 gpt_creds = json.load(f)
@@ -24,7 +25,8 @@ SHEET = GSPREAD_CLIENT.open("chat-log")
 
 log = SHEET.worksheet("log")
 
-data = log.get_all_values()
+data = []
+entries = 0
 
 def get_user_input():
     """
@@ -84,8 +86,8 @@ def validate_name(value):
         return False
 
     print(f'\nWelcome {value}, go ahead and ask your question.\n') 
-    print('The question should containt at least 10 characters')
-    print('and if you would like to leave the program, just type "exit.\n')
+    print('The question should contain at least 10 characters')
+    print('and if you would like to leave the program, just type "exit".\n')
     print('\n     Enjoy!      \n\n')
     return True
 
@@ -99,8 +101,30 @@ def get_name():
             pass       
 
 def chat_log(user_input, response):
+    global entries
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    log.append_row([timestamp, name, user_input, response])
+    entry = [timestamp, name, user_input, response]
+    data.append(entry)
+    entries += 1
+   
+def store_data(data):
+    while True:
+        try:
+            answer = input("\nWould you like to save your chat-log? (y/n): ").lower()
+            if answer == 'y':
+                 for row in data:
+                    log.append_row(row)
+                    print("We saved it for you, ending the function now")
+                    print("Bye!")
+                    return False
+            elif answer == 'n':
+                print("Ok we did not save it, ending the function now")
+                print("Bye!")
+                break
+            else:
+                raise ValueError("Wrong input. Please answer with 'y' or 'n'.")
+        except ValueError as e:
+            print(f"Error: {str(e)}")
 
 def main():
   while True:
@@ -112,11 +136,11 @@ def main():
         chat_log(user_input, response)
 
         if user_input.lower() == "exit":
+            print(data)  
+            print(entries)
+            store_data(data)  
             break
 
- 
 print('\nWelcome to my chat terminal\n')     
 name = get_name()        
 main()
-# Exit loop
-
