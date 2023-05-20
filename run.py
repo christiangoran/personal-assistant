@@ -45,7 +45,7 @@ def validate_input(values):
     """
     try:
         if values.lower() == "exit":
-            print(f'We are exiting the terminal for you {name}')
+            print(f'\nWe are exiting the terminal for you {name}')
             return True  # "exit" to end the loop
         elif len(values) < 10:
             raise ValueError(
@@ -103,15 +103,20 @@ def chat_log(user_input, response):
     log.append_row([timestamp, name, user_input, response])
 
 def main():
-   
-    user_input = get_user_input()
-    response = get_response(user_input)
-    print("ChatGPT: ", response)
-    chat_log(user_input, response)
+  while True:
+        user_input = get_user_input()
+        response = get_response(user_input)
+        print("ChatGPT: ", response)
+        print()
+        print()
+        chat_log(user_input, response)
+
+        if user_input.lower() == "exit":
+            break
+
  
 print('\nWelcome to my chat terminal\n')     
 name = get_name()        
 main()
 # Exit loop
-
 
