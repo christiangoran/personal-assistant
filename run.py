@@ -82,13 +82,8 @@ def validate_name(value):
         elif len(value) < 3:
             raise ValueError(f"Please enter at least 3 letter as a name.")
     except ValueError as e:
-        print(f"Invalid data: {e}. Please try again.")
+        print(f"\nInvalid data: {e}. Please try again.\n")
         return False
-
-    print(f'\nWelcome {value}, go ahead and ask your question.\n') 
-    print('The question should contain at least 10 characters')
-    print('and if you would like to leave the program, just type "exit".\n')
-    print('\n     Enjoy!      \n\n')
     return True
 
 def get_name():
@@ -122,11 +117,33 @@ def store_data(data):
                 print("Bye!")
                 break
             else:
-                raise ValueError("Wrong input. Please answer with 'y' or 'n'.")
+                raise ValueError("\Wrong input. Please answer with 'y' or 'n'.")
         except ValueError as e:
-            print(f"Error: {str(e)}")
+            print(f"\nError: {str(e)}\n")
 
-def main():
+def chat_or_log():
+    while True:
+        try:
+            choice = input("Press (c) to use the chat bot \nor press (l) to access your chat log: ").lower()
+            if choice == 'c':
+                print("\nOk, then chat bot it is!\n")
+              #  print(f'\nWelcome {value}, go ahead and ask your question.\n') 
+                print('The question should contain at least 10 characters')
+                print('and if you would like to leave the program, just type "exit".\n')
+                print('\n     Enjoy!      \n\n')
+                chat_main()
+                return True
+            elif choice == 'l':
+                print("\nOk, let's pull out your log!\n")
+                manipulate_logs()
+
+            else: 
+                raise ValueError("Sorry, wrong input. Please choose 'c' or 'l'.")
+        except ValueError as e:
+            print(f"\nError: {str(e)}\n")          
+
+
+def chat_main():
   while True:
         user_input = get_user_input()
         response = get_response(user_input)
@@ -141,6 +158,11 @@ def main():
             store_data(data)  
             break
 
-print('\nWelcome to my chat terminal\n')     
+# --------------------------------------
+# Initial code
+# --------------------------------------
+
+print('\nWelcome to my chat terminal\n') 
 name = get_name()        
-main()
+print(f'\nHello {name} what would you like to do?\n')
+chat_or_log()   
