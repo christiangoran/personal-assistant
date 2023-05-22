@@ -28,6 +28,27 @@ log = SHEET.worksheet("log")
 data = []
 entries = 0
 
+def get_name():
+
+    while True:
+        try:
+            name = input('Please enter your name: ') 
+            if validate_name(name):
+                return name
+        except ValueError:
+            pass     
+
+def validate_name(value):
+    try:
+        if value.isdigit():
+            raise ValueError(f'No, no numbers allowed unless you are a Star Wars droid')
+        elif len(value) < 3:
+            raise ValueError(f"Please enter at least 3 letter as a name.")
+    except ValueError as e:
+        print(f"\nInvalid data: {e}. Please try again.\n")
+        return False
+    return True  
+
 def get_user_input():
     """
     Get question input from the user
@@ -38,7 +59,6 @@ def get_user_input():
         if validate_input(user_input):
             print('\nPlease wait a minute.\n')
             break
-
     return user_input
 
 def validate_input(values):
@@ -56,7 +76,6 @@ def validate_input(values):
     except ValueError as e:
         print(f'Invalid data: {e}, please try again.')
         return False
-
     return True 
 
 def get_response(user_input):
@@ -64,36 +83,14 @@ def get_response(user_input):
     Takes the user_input, enters it into a variable 'completion'
     toghether with other directives for chatGPT
     """
-
     completion = openai.ChatCompletion.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "assistant", "content": user_input}]
     )
-
     if completion.choices:
         return completion.choices[0].message.content
     else:
         return "Something went wrong, please try again."
-
-def validate_name(value):
-    try:
-        if value.isdigit():
-            raise ValueError(f'No, no numbers allowed unless you are a Star Wars droid')
-        elif len(value) < 3:
-            raise ValueError(f"Please enter at least 3 letter as a name.")
-    except ValueError as e:
-        print(f"\nInvalid data: {e}. Please try again.\n")
-        return False
-    return True
-
-def get_name():
-    while True:
-        try:
-            name = input('Please enter your name: ') 
-            if validate_name(name):
-                return name
-        except ValueError:
-            pass       
 
 def chat_log(user_input, response):
     global entries
@@ -103,31 +100,66 @@ def chat_log(user_input, response):
     entries += 1
    
 def store_data(data):
+    global entries
     while True:
         try:
             answer = input("\nWould you like to save your chat-log? (y/n): ").lower()
             if answer == 'y':
-                 for row in data:
-                    log.append_row(row)
-                    print("We saved it for you, ending the function now")
-                    print("Bye!")
-                    return False
+                for sublist in data:
+                    log.append_row(sublist)
+                print("ok, we saved it for you.\n")
+                data.clear()
+                print(f'\nOk lets see if entries increased {entries}\n')
+                return False
             elif answer == 'n':
-                print("Ok we did not save it, ending the function now")
-                print("Bye!")
+                print("Ok, we did not save it.\n")
+                reduction = len(data)
+                entries -= reduction
+                data.clear()
+                print(f'\nDo we have any {entries} left now?\n')
                 break
             else:
                 raise ValueError("\Wrong input. Please answer with 'y' or 'n'.")
         except ValueError as e:
             print(f"\nError: {str(e)}\n")
 
+def manipulate_logs():
+    if entries == 0:
+        print("Sorry, but you do not have anything in your chat logs.")
+        print("Let's get you over to the chat terminal to change that!")
+        chat_main()
+    else:
+        print(f"You have {entries} stored: ")
+        log_rows = log.get_all_values()[-entries:]
+        for row in log_rows:
+            print()
+            print(row)
+            print()
+
+
+def chat_main():
+  while True:
+        user_input = get_user_input()
+        if user_input.lower() == "exit":
+            print("This is your chat log: ")
+            print(data)  
+            store_data(data)  
+            print("What would you like to do now?")
+            chat_or_log()
+            break
+        else:
+            response = get_response(user_input)
+            print("ChatGPT: ", response)
+            print()
+            print()
+            chat_log(user_input, response)
+
 def chat_or_log():
     while True:
         try:
-            choice = input("Press (c) to use the chat bot \nor press (l) to access your chat log: ").lower()
+            choice = input("\nPress (c) to use the chat bot \nor press (l) to access your chat log: ").lower()
             if choice == 'c':
                 print("\nOk, then chat bot it is!\n")
-              #  print(f'\nWelcome {value}, go ahead and ask your question.\n') 
                 print('The question should contain at least 10 characters')
                 print('and if you would like to leave the program, just type "exit".\n')
                 print('\n     Enjoy!      \n\n')
@@ -140,23 +172,7 @@ def chat_or_log():
             else: 
                 raise ValueError("Sorry, wrong input. Please choose 'c' or 'l'.")
         except ValueError as e:
-            print(f"\nError: {str(e)}\n")          
-
-
-def chat_main():
-  while True:
-        user_input = get_user_input()
-        response = get_response(user_input)
-        print("ChatGPT: ", response)
-        print()
-        print()
-        chat_log(user_input, response)
-
-        if user_input.lower() == "exit":
-            print(data)  
-            print(entries)
-            store_data(data)  
-            break
+            print(f"\nError: {str(e)}\n")   
 
 # --------------------------------------
 # Initial code
