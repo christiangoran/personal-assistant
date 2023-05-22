@@ -109,14 +109,12 @@ def store_data(data):
                     log.append_row(sublist)
                 print("ok, we saved it for you.\n")
                 data.clear()
-                print(f'\nOk lets see if entries increased {entries}\n')
                 return False
             elif answer == 'n':
                 print("Ok, we did not save it.\n")
                 reduction = len(data)
                 entries -= reduction
                 data.clear()
-                print(f'\nDo we have any {entries} left now?\n')
                 break
             else:
                 raise ValueError("\Wrong input. Please answer with 'y' or 'n'.")
@@ -131,10 +129,33 @@ def manipulate_logs():
     else:
         print(f"You have {entries} stored: ")
         log_rows = log.get_all_values()[-entries:]
+        print('---------------')
         for row in log_rows:
             print()
             print(row)
             print()
+        print('---------------') 
+        while True:
+            try:
+                choice = input("\nDo you want to erase log? y/n ").lower()
+                if choice == 'y':
+                    print("\nerasing...\n")
+                    row_count = len(log_rows)
+                    if row_count > 0:
+                        log.delete_rows(1, row_count)
+                        print(f'{row_count} logs deleted')
+                    else:
+                        print('erased!')    
+                    chat_or_log()
+                    return True
+                elif choice == 'n':
+                    print("\nWe will keep the log for you!\n")
+                    chat_or_log()
+
+                else: 
+                    raise ValueError("Sorry, wrong input. Please choose 'c' or 'l'.")
+            except ValueError as e:
+                print(f"\nError: {str(e)}\n") 
 
 
 def chat_main():
@@ -142,7 +163,11 @@ def chat_main():
         user_input = get_user_input()
         if user_input.lower() == "exit":
             print("This is your chat log: ")
-            print(data)  
+          #  print(data)
+            for row in data:
+                print()
+                print(row)
+                print()  
             store_data(data)  
             print("What would you like to do now?")
             chat_or_log()
