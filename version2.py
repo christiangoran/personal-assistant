@@ -3,6 +3,7 @@ import requests
 import gspread
 import openai
 import datetime
+import pandas as pd
 from google.oauth2.service_account import Credentials
 
 f = open('creds.json', 'r')
@@ -23,9 +24,12 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open("chat-log")
 
 log = SHEET.worksheet("log")
+log_all_values = log.get_all_values()
+df = pd.DataFrame(data=log_all_values[1:], columns=log_all_values[0])
 
 data = []
 entries = 0
+today = datetime.date.today()
 
 def get_name():
 
@@ -96,8 +100,9 @@ def get_response(user_input):
 
 def chat_log(user_input, response):
     global entries
-    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    entry = [timestamp, name, user_input, response]
+    timestamp = datetime.datetime.now().strftime("%H:%M:%S")
+    today = datetime.datetime.now().strftime("%Y-%m-%d")
+    entry = [today, timestamp, name, user_input, response]
     data.append(entry)
     entries += 1
    
@@ -123,43 +128,56 @@ def store_data(data):
         except ValueError as e:
             print(f"\nError: {str(e)}\n")
 
-def manipulate_logs():
-    global entries
-    if entries == 0:
-        print("Sorry, but you do not have anything in your chat logs.")
-        print("Let's get you over to the chat terminal to change that!")
-        chat_main()
-    else:
-        print(f"You have {entries} stored: ")
-        log_rows = log.get_all_values()[-entries:]
-        total_rows = len(log.get_all_values())
-        print('---------------')
-        for row in log_rows:
-            print()
-            print(row)
-            print()
-        print('---------------') 
-        
-        while True:
-            try:
-                choice = input("\nDo you want to erase log? y/n \n").lower()
-                if choice == 'y':
-                    print("\nerasing...\n")
-                    row_count = len(log_rows)
-                    start_row = total_rows - row_count + 1
-                    log.delete_rows(start_row, total_rows) 
-                    print(f'{row_count} logs deleted') 
-                    entries = 0
-                    chat_or_log()
-                    return True
-                elif choice == 'n':
-                    print("\nWe will keep the log for you!\n")
-                    chat_or_log()
+def manipulate_logs(name):
+    global entries, df
+   # if entries == 0:
+    #    print("Sorry, but you do not have anything in your chat logs.")
+     #   print("Let's get you over to the chat terminal to change that!")
+      #  chat_main()
+   # else:
+    print(f"You have {entries} stored from this session: ")
+    log_rows = log.get_all_values()[-entries:]
+    print('---------------')
+    for row in log_rows:
+        print()
+        print(row)
+        print()
+    print('---------------') 
+    print('\nAnd under your name you have these entries:\n')
+    filtered_df = df[df['NAME'] == name]
+    print(filtered_df)
+    while True:
+        try:
+            print("\nDo you want to:")
+            print("- Delete all your logs?")
+            print("- Delete logs from today?")
+            print("- Or maybe store them for a rainy day?")
+            choice = input("\nAll (a)\nToday (t)\nIt might be nice with something for a rainy day! (k)\n").lower()
+            if choice == 'a':
+                print("\nerasing all...\n")
+                all_entries = df[(df['DATE'] == str(today)) & (df['NAME'] == name)]
+                df = df.drop(all_entries.index)
+                # print(f'{row_count} logs deleted') 
+                entries = 0
+              #  SHEET.upload_file('chat-log')
+                chat_or_log()
+                return True
+            elif choice == 't':
+                print("\nerasing today...\n")
+                todays_entries = df[(df['DATE'] == str(today))]
+                df = df.drop(todays_entries.index)
+                #print(f'{row_count} logs deleted') 
+                entries = 0
+               # SHEET.upload_file('chat-log')
+                chat_or_log()
+            elif choice == 'k':
+                print("\nWe will keep the log for you!\n")
+                chat_or_log()
 
-                else: 
-                    raise ValueError("Sorry, wrong input. Please choose 'c' or 'l'.")
-            except ValueError as e:
-                print(f"\nError: {str(e)}\n") 
+            else: 
+                raise ValueError("Sorry, wrong input. Please choose 'c' or 'l'.")
+        except ValueError as e:
+            print(f"\nError: {str(e)}\n") 
 
 def chat_main():
   while True:
@@ -195,7 +213,7 @@ def chat_or_log():
                 return True
             elif choice == 'l':
                 print("\nOk, let's pull out your log!\n")
-                manipulate_logs()
+                manipulate_logs(name)
 
             else: 
                 raise ValueError("Sorry, wrong input. Please choose 'c' or 'l'.")
