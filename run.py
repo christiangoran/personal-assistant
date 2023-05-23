@@ -4,7 +4,6 @@ import gspread
 import openai
 import datetime
 from google.oauth2.service_account import Credentials
-import pprint
 
 f = open('creds.json', 'r')
 gpt_creds = json.load(f)
@@ -32,7 +31,7 @@ def get_name():
 
     while True:
         try:
-            name = input('Please enter your name: ') 
+            name = input('Please enter your name:\n') 
             if validate_name(name):
                 return name
         except ValueError:
@@ -54,7 +53,7 @@ def get_user_input():
     Get question input from the user
     """
     while True:
-        user_input = input("Please enter your question: ")
+        user_input = input("Please enter your question:\n")
 
         if validate_input(user_input):
             print('\nPlease wait a minute.\n')
@@ -106,7 +105,7 @@ def store_data(data):
     global entries
     while True:
         try:
-            answer = input("\nWould you like to save your chat-log? (y/n): ").lower()
+            answer = input("\nWould you like to save your chat-log? (y/n): \n").lower()
             if answer == 'y':
                 for sublist in data:
                     log.append_row(sublist)
@@ -141,7 +140,7 @@ def manipulate_logs():
         print('---------------') 
         while True:
             try:
-                choice = input("\nDo you want to erase log? y/n ").lower()
+                choice = input("\nDo you want to erase log? y/n \n").lower()
                 if choice == 'y':
                     print("\nerasing...\n")
                     row_count = len(log_rows)
@@ -185,7 +184,7 @@ def chat_main():
 def chat_or_log():
     while True:
         try:
-            choice = input("\nPress (c) to use the chat bot \nor press (l) to access your chat log: ").lower()
+            choice = input("\nPress (c) to use the chat bot \nor press (l) to access your chat log: \n").lower()
             if choice == 'c':
                 print("\nOk, then chat bot it is!\n")
                 print('The question should contain at least 10 characters')
