@@ -83,14 +83,17 @@ def get_response(user_input):
     Takes the user_input, enters it into a variable 'completion'
     toghether with other directives for chatGPT
     """
-    completion = openai.ChatCompletion.create(
-        model="gpt-3.5-turbo",
-        messages=[{"role": "assistant", "content": user_input}]
-    )
-    if completion.choices:
-        return completion.choices[0].message.content
-    else:
-        return "Something went wrong, please try again."
+    try:
+        completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "assistant", "content": user_input}]
+        )
+        if completion.choices:
+            return completion.choices[0].message.content
+        else:
+            return "Something went wrong, please try again."
+    except Exception as e:
+        return f"Something went wrong:\n\n {str(e)}.\n\nPlease try again."        
 
 def chat_log(user_input, response):
     global entries
@@ -122,6 +125,7 @@ def store_data(data):
             print(f"\nError: {str(e)}\n")
 
 def manipulate_logs():
+    global entries
     if entries == 0:
         print("Sorry, but you do not have anything in your chat logs.")
         print("Let's get you over to the chat terminal to change that!")
@@ -141,11 +145,11 @@ def manipulate_logs():
                 if choice == 'y':
                     print("\nerasing...\n")
                     row_count = len(log_rows)
-                    if row_count > 0:
-                        log.delete_rows(1, row_count)
-                        print(f'{row_count} logs deleted')
-                    else:
-                        print('erased!')    
+                    total_rows = log.row_count
+                    start_row = total_rows - row_count
+                    log.delete_rows(entries)
+                    print(f'{row_count} logs deleted') 
+                    entries = 0
                     chat_or_log()
                     return True
                 elif choice == 'n':
@@ -156,7 +160,6 @@ def manipulate_logs():
                     raise ValueError("Sorry, wrong input. Please choose 'c' or 'l'.")
             except ValueError as e:
                 print(f"\nError: {str(e)}\n") 
-
 
 def chat_main():
   while True:
