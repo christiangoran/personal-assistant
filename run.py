@@ -28,7 +28,9 @@ data = []
 entries = 0
 
 def get_name():
-
+    """
+    Get user name
+    """
     while True:
         try:
             name = input('Please enter your name:\n') 
@@ -38,9 +40,13 @@ def get_name():
             pass     
 
 def validate_name(value):
+    """
+    Validates that user enters at least 3 characters
+    and no numbers.
+    """
     try:
         if value.isdigit():
-            raise ValueError(f'No, no numbers allowed unless you are a Star Wars droid')
+            raise ValueError(f'No, no numbers allowed unless you are a Star Wars droid. Sorry Elon Musk!')
         elif len(value) < 3:
             raise ValueError(f"Please enter at least 3 letter as a name.")
     except ValueError as e:
@@ -62,7 +68,7 @@ def get_user_input():
 
 def validate_input(values):
     """
-    Inside the try, Raises valueError if there aren't more than 10 characters.
+    Raises valueError if there aren't more than 10 characters in user question.
     """
     try:
         if values.lower() == "exit":
@@ -80,7 +86,8 @@ def validate_input(values):
 def get_response(user_input):
     """
     Takes the user_input, enters it into a variable 'completion'
-    toghether with other directives for chatGPT
+    toghether with other directives for chatGPT and sends it of
+    for a reply.
     """
     try:
         completion = openai.ChatCompletion.create(
@@ -95,6 +102,11 @@ def get_response(user_input):
         return f"Something went wrong:\n\n {str(e)}.\n\nPlease try again."        
 
 def chat_log(user_input, response):
+    """
+    Adds question and reply together with name and timestamp as a nested list to 
+    the data-list and adds 1 to the entries variable to keep count of the 
+    number of questions that has been asked.
+    """
     global entries
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     entry = [timestamp, name, user_input, response]
@@ -102,6 +114,10 @@ def chat_log(user_input, response):
     entries += 1
    
 def store_data(data):
+    """
+    The user is presented with the option to store the questions and answers from
+    the last session in the cloud.
+    """
     global entries
     while True:
         try:
@@ -124,6 +140,9 @@ def store_data(data):
             print(f"\nError: {str(e)}\n")
 
 def manipulate_logs():
+    """
+    Here the user has the option to remove the stored logs from the cloud.
+    """
     global entries
     if entries == 0:
         print("Sorry, but you do not have anything in your chat logs.")
@@ -162,7 +181,10 @@ def manipulate_logs():
                 print(f"\nError: {str(e)}\n") 
 
 def chat_main():
-  while True:
+    """
+    Function that runs the whole chat aspect of the program.
+    """
+    while True:
         user_input = get_user_input()
         if user_input.lower() == "exit":
             print("This is your chat log: ")
@@ -183,6 +205,9 @@ def chat_main():
             chat_log(user_input, response)
 
 def chat_or_log():
+    """
+    Main menu
+    """
     while True:
         try:
             choice = input("\nPress (c) to use the chat bot \nor press (l) to access your chat log: \n").lower()
