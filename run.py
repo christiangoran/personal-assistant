@@ -3,7 +3,13 @@ import requests
 import gspread
 import openai
 import datetime
+import colorama
+import time
+import pyfiglet
+from colorama import Fore, Back, Style, init
 from google.oauth2.service_account import Credentials
+
+colorama.init()
 
 f = open('creds.json', 'r')
 gpt_creds = json.load(f)
@@ -27,6 +33,12 @@ log = SHEET.worksheet("log")
 data = []
 entries = 0
 
+red_text = Fore.RED
+green_text = Fore.GREEN
+reset_all = Style.RESET_ALL
+yellow_text = Fore.YELLOW
+blue_text = Fore.BLUE
+
 def get_name():
     """
     Get user name
@@ -46,7 +58,9 @@ def validate_name(value):
     """
     try:
         if value.isdigit():
-            raise ValueError(f'No, no numbers allowed unless you are a Star Wars droid. Sorry Elon Musk!')
+            raise ValueError(f'{reset_all}No, no numbers allowed unless you are a'
+                             f'{Style.BRIGHT}{yellow_text} Star Wars droid.'
+                             f'{Style.BRIGHT}{red_text} Sorry Elon Musk!{reset_all}')
         elif len(value) < 3:
             raise ValueError(f"Please enter at least 3 letter as a name.")
     except ValueError as e:
@@ -59,7 +73,11 @@ def get_user_input():
     Get question input from the user
     """
     while True:
-        user_input = input("Please enter your question:\n")
+        user_input = input(f"\n{reset_all}Please enter your question, and sorry my circuits are a bit"
+                           f"{Style.BRIGHT}{red_text} BURNT{reset_all} out at the"
+                           " moment, so I will not"
+                           f"{Style.BRIGHT}{green_text} REMEMBER{reset_all}"
+                           " your previous question.\n")
 
         if validate_input(user_input):
             print('\nPlease wait a minute.\n')
@@ -72,11 +90,11 @@ def validate_input(values):
     """
     try:
         if values.lower() == "exit":
-            print(f'\nWe are exiting the terminal for you {name}')
+            print(f'\n{Style.BRIGHT}{green_text} We are exiting the terminal for you {name}{reset_all}')
             return True  # "exit" to end the loop
         elif len(values) < 10:
             raise ValueError(
-                f'More than 10 characters required, you provided {len(values)}'
+                f'More than {Style.BRIGHT}{red_text} 10{reset_all} characters required, you provided {len(values)}'
             )
     except ValueError as e:
         print(f'Invalid data: {e}, please try again.')
@@ -145,8 +163,8 @@ def manipulate_logs():
     """
     global entries
     if entries == 0:
-        print("Sorry, but you do not have anything in your chat logs.")
-        print("Let's get you over to the chat terminal to change that!")
+        print(f"{Style.BRIGHT}{yellow_text}Sorry, but you do not have anything in your chat logs.")
+        print(f"Let's get you over to the chat terminal to change that!{reset_all}")
         chat_main()
     else:
         print(f"You have {entries} stored: ")
@@ -154,9 +172,9 @@ def manipulate_logs():
         total_rows = len(log.get_all_values())
         print('---------------')
         for row in log_rows:
-            print()
+            print(f'{Style.BRIGHT}{blue_text}')
             print(row)
-            print()
+            print(f'{reset_all}')  
         print('---------------') 
         
         while True:
@@ -190,18 +208,18 @@ def chat_main():
             print("This is your chat log: ")
           #  print(data)
             for row in data:
-                print()
+                print(f'{Style.BRIGHT}{blue_text}')
                 print(row)
-                print()  
+                print(f'{reset_all}')  
             store_data(data)  
-            print("What would you like to do now?")
+            print(f"{Style.BRIGHT}{green_text}What would you like to do now?")
             chat_or_log()
             break
         else:
             response = get_response(user_input)
+            print(f'{Style.BRIGHT}{green_text}')
             print("ChatGPT: ", response)
-            print()
-            print()
+            print(f'{reset_all}')
             chat_log(user_input, response)
 
 def chat_or_log():
@@ -210,12 +228,13 @@ def chat_or_log():
     """
     while True:
         try:
-            choice = input("\nPress (c) to use the chat bot \nor press (l) to access your chat log: \n").lower()
+            choice = input(f"\n{Style.BRIGHT}{green_text}Press (c) to use the chat bot \nor press (l)"
+                           f"to access your chat log: \n{reset_all}").lower()
             if choice == 'c':
-                print("\nOk, then chat bot it is!\n")
+                print(f'\n{reset_all}Ok, then chat bot it is!\n')
                 print('The question should contain at least 10 characters')
-                print('and if you would like to leave the program, just type "exit".\n')
-                print('\n     Enjoy!      \n\n')
+                print(f'and if you would like to leave the program, just type{Style.BRIGHT}{red_text} "exit"{reset_all}.\n')
+                print(f'\n  {Style.BRIGHT}{yellow_text}    Enjoy!  {reset_all}    \n\n')
                 chat_main()
                 return True
             elif choice == 'l':
@@ -231,7 +250,19 @@ def chat_or_log():
 # Initial code
 # --------------------------------------
 
-print('\nWelcome to my chat terminal\n') 
+def rainbow_text(text):
+    colors = [Fore.RED, Fore.YELLOW, Fore.GREEN, Fore.CYAN, Fore.BLUE, Fore.MAGENTA]
+    colored_chars = [colors[i % len(colors)] + char for i, char in enumerate(text)]
+    return "".join(colored_chars)
+
+text = "\n Beep beep boot\nWelcome to my...\n"
+rainbow = rainbow_text(text)
+
+for char in rainbow:
+    print(char, end="", flush=True)
+    time.sleep(0.01)
+
+print(pyfiglet.figlet_format("Chat\nBoot", font = "isometric3"))
 name = get_name()        
-print(f'\nHello {name} what would you like to do?\n')
+print(Fore.GREEN + f'\nHello {name} what would you like to do?\n')
 chat_or_log()   
