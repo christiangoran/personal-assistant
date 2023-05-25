@@ -34,8 +34,32 @@ reset_all = Style.RESET_ALL
 yellow_text = Fore.YELLOW
 blue_text = Fore.BLUE
 
+# Main Class
 class ChatBot:
+    """
+    This class represents the chat bot and contains the following methods:
+    # __init__(self): Placeholder and data holding attributes.
+    # get_name(self): Gets the name of the user.
+    # validate_name(self, value): Validates the name to contain at least
+    3 characters and no numbers.
+    # get_user_input(self): Takes the user question.
+    # validate_inpu(self, values): validates so that user enters at least
+    10 characters or if the user writes "exit".
+    # get_response(self, user_input): takes user_input and sends it via API
+    to OpenAI for a response.
+    # chat_log(self, user_input, response): Takes the arguments and store them 
+    together with a timestamp in a nested list in the list called "data" as well
+    as increasing entries variable with 1 to keep track of number of 
+    questions and responses.
+    # store_data(self, data): Function for taking the nested questions/answers lists 
+    and storing them in a Google Spreadsheet.
+    # chat_main(self): Also takes the "exit" command and pulls out the nested lists
+    for the user to see before asking wether the user wants to save them or not.
+    """
     def __init__(self):
+        """
+        Holds the variables necessary to run the ChatBot.
+        """
         self.data = []
         self.entries = 0
         self.name = ""
@@ -43,7 +67,7 @@ class ChatBot:
 
     def get_name(self):
         """
-        Get user name
+        Get user name.
         """
         while True:
             try:
@@ -56,8 +80,7 @@ class ChatBot:
 
     def validate_name(self, value):
         """
-        Validates that user enters at least 3 characters
-        and no numbers.
+        Validates that user enters at least 3 characters and no numbers.
         """
         try:
             if value.isdigit():
@@ -75,7 +98,7 @@ class ChatBot:
 
     def get_user_input(self):
         """
-        Get question input from the user
+        Takes question input from the user.
         """
         while True:
             user_input = input(f"\n{reset_all}Please enter your question, and"
@@ -130,6 +153,9 @@ class ChatBot:
 
 
     def chat_log(self, user_input, response):
+        """
+        Adds name, question, response & a timestamp in a nested list.
+        """
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         entry = [timestamp, self.name, user_input, response]
         self.data.append(entry)
@@ -164,6 +190,9 @@ class ChatBot:
 
 
     def chat_main(self):
+        """
+        Back bone of the ChatBot. Running the different methods.
+        """
         while True:
             user_input = self.get_user_input()
             if user_input.lower() == "exit":
@@ -182,10 +211,13 @@ class ChatBot:
                 print(f"{reset_all}")
                 self.chat_log(user_input, response)
 
-    
+# File manipulating Class    
 class FileVault:
     """
-    This class is useed to manipulate logs
+    This class is useed to manipulate logs and its only method right now is:
+    # manipulate_logs(): Is used when the user want to pull out the current sessions
+    questions and answers from the Google spreadsheet. The user can choose to
+    delete them or leave them in the Google Spreadsheet.
     """
     @staticmethod
     def manipulate_logs():
@@ -235,6 +267,10 @@ class FileVault:
  #_-----------------------------   
 
 def rainbow_text(text):
+    """
+    Sprinkles a little bit of fairy dust on the project in the form of rainbow text
+    being typed out.
+    """
     colors = [Fore.RED, Fore.YELLOW, Fore.GREEN,
               Fore.CYAN, Fore.BLUE, Fore.MAGENTA]
     colored_chars = [colors[i % len(colors)] +
@@ -243,7 +279,7 @@ def rainbow_text(text):
 
 def chat_or_log():
     """
-    Main menu
+    Main menu.
     """
     while True:
         try:
@@ -269,8 +305,11 @@ def chat_or_log():
         except ValueError as e:
             print(f"\nError: {str(e)}\n")    
 
-#---.. Start here
+#Start here
 def startup():
+    """
+    Initial startup function.
+    """
     text = "\n Beep beep pot\nWelcome to my...\n"
     rainbow = rainbow_text(text)
 
