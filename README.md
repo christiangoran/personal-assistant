@@ -1,32 +1,77 @@
 ![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
-Welcome,
+The ChatBot app was created as a Porfolio Project #3 (Python Essentials) for Diploma in Full Stack Software Development at Code Institute. It allows the user to ask questions about anything to the a bot. The questions and answers are stored locally during the session the user also has the option to store the chat logs in a Google Spreadsheet 
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+## Table of content
+1. [Project](#project)
+    * [Strategy/Scope](#strategy-scope)
+    * [Site owner goals](#site-owner-goals)
+    * [External user's goal](#external-users-goal)
+2. [User Experience (UX/UI)](#user-experience-ux-ui)
+    * [Colour Scheme](#colour-scheme)
+3. [Logic and features](#logic-and-features)
+    * [Python logic](#python-logic)
+    * [Database structure](#database-structure)
+    * [Features](#features)
+    * [Main Menu](#main-menu)
+    * [ChatBot](#chatbot)
+    * [Store Logs](#store-logs)
+    * [Access Logs](#access-logs)
+    * [Exit](#exit)
+4. [Technology](#technology)
+    * [Software used](#software-used)
+    * [Python libraries/modules](#python-libraries-modules)
+5. [Testing](#testing)
+    * [Accessibility](#accessibility)
+    * [Validation](#validation)
+    * [Manual testing](#manual-testing)
+    * [Bugs/known issues](#bugs-known-issues)
+6. [Deployment](#deployment)
+    * [Git and GitHub](#git-and-github)
+    * [Deployment to Heroku](#deployment-to-heroku)
+7. [Possible future development](#possible-future-development)
+8. [Credits](#credits)
+    * [Code](#code)
+    * [Media](#media)
+    * [Acknowledgments](#acknowledgments)
 
-## Reminders
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+## Project
+### Strategy/Scope
+### Site owners goals
+### External user's goal
 
-## Creating the Heroku app
+## User Experience (UX)
+### Colour Scheme
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+## Logic and features
+### Python Logic
+### Database Structure
+### Features
+#### Main Menu
+#### ChatBot
+#### Store Logs
+#### Access Logs
+#### Exit
 
-1. `heroku/python`
-2. `heroku/nodejs`
+## Technology
+### Languages used
+### Software used
+### Python libraries/modules
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+## Testing
+### Acceissibility
+### Validation
+PEP8
+### Bugs/Known Issues
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+## Deployment
+### Git and GitHub
+### Deployment to Heroku
 
-Connect your GitHub repository and deploy as normal.
+## Possible Future Developent
 
-## Constraints
-
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
-
----
-
-Happy coding!
+## Credits
+### Code
+### Media
+### Aknowledgements
