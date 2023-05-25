@@ -34,6 +34,7 @@ reset_all = Style.RESET_ALL
 yellow_text = Fore.YELLOW
 blue_text = Fore.BLUE
 
+
 # Main Class
 class ChatBot:
     """
@@ -47,14 +48,15 @@ class ChatBot:
     10 characters or if the user writes "exit".
     # get_response(self, user_input): takes user_input and sends it via API
     to OpenAI for a response.
-    # chat_log(self, user_input, response): Takes the arguments and store them 
-    together with a timestamp in a nested list in the list called "data" as well
-    as increasing entries variable with 1 to keep track of number of 
+    # chat_log(self, user_input, response): Takes the arguments and store them
+    together with a timestamp in a nested list in the list called "data" as
+    well as increasing entries variable with 1 to keep track of number of
     questions and responses.
-    # store_data(self, data): Function for taking the nested questions/answers lists 
-    and storing them in a Google Spreadsheet.
-    # chat_main(self): Also takes the "exit" command and pulls out the nested lists
-    for the user to see before asking wether the user wants to save them or not.
+    # store_data(self, data): Function for taking the nested questions/answers
+    lists and storing them in a Google Spreadsheet.
+    # chat_main(self): Also takes the "exit" command and pulls out the
+    nested lists for the user to see before asking wether the user wants
+    to save them or not.
     """
     def __init__(self):
         """
@@ -63,7 +65,6 @@ class ChatBot:
         self.data = []
         self.entries = 0
         self.name = ""
-    
 
     def get_name(self):
         """
@@ -77,24 +78,23 @@ class ChatBot:
             except ValueError:
                 pass
 
-
     def validate_name(self, value):
         """
         Validates that user enters at least 3 characters and no numbers.
         """
         try:
             if value.isdigit():
-                raise ValueError(f'{reset_all}No, no numbers allowed unless you'
-                                f' are a{Style.BRIGHT}{yellow_text} Star Wars'
-                                f'droid.{Style.BRIGHT}{red_text}'
-                                f' Sorry Elon Musk!{reset_all}')
+                raise ValueError(f'{reset_all}No, no numbers allowed'
+                                 f'unless you'
+                                 f' are a{Style.BRIGHT}{yellow_text} Star Wars'
+                                 f'droid.{Style.BRIGHT}{red_text}'
+                                 f' Sorry Elon Musk!{reset_all}')
             elif len(value) < 3:
                 raise ValueError(f"Please enter at least 3 letter as a name.")
         except ValueError as e:
             print(f"\nInvalid data: {e}. Please try again.\n")
             return False
         return True
-
 
     def get_user_input(self):
         """
@@ -105,7 +105,8 @@ class ChatBot:
                                f" sorry my circuits are a bit"
                                f"{Style.BRIGHT}{red_text} BURNT{reset_all}"
                                " out at the moment, so I will not"
-                               f"{Style.BRIGHT}{green_text} REMEMBER{reset_all}"
+                               f"{Style.BRIGHT}{green_text}"
+                               f"REMEMBER{reset_all}"
                                " your previous question.\n")
 
             if self.validate_input(user_input):
@@ -113,25 +114,25 @@ class ChatBot:
                 break
         return user_input
 
-
     def validate_input(self, values):
         """
-        Raises valueError if there aren't more than 10 characters in user question.
+        Raises valueError if there aren't more than 10 characters
+        in user question.
         """
         try:
             if values.lower() == "exit":
-                print(f'\n{Style.BRIGHT}{green_text} We are exiting the terminal'
+                print(f'\n{Style.BRIGHT}{green_text} We are exiting the'
+                      f'terminal'
                       f' for you {self.name}{reset_all}')
                 return True  # "exit" to end the loop
             elif len(values) < 10:
                 raise ValueError(f'More than {Style.BRIGHT}{red_text}'
-                                f'10{reset_all} characters'
-                                f' required, you provided {len(values)}')
+                                 f'10{reset_all} characters'
+                                 f' required, you provided {len(values)}')
         except ValueError as e:
             print(f'Invalid data: {e}, please try again.')
             return False
         return True
-
 
     def get_response(self, user_input):
         """
@@ -151,7 +152,6 @@ class ChatBot:
         except Exception as e:
             return f"Something went wrong:\n\n {str(e)}.\n\nPlease try again."
 
-
     def chat_log(self, user_input, response):
         """
         Adds name, question, response & a timestamp in a nested list.
@@ -160,7 +160,6 @@ class ChatBot:
         entry = [timestamp, self.name, user_input, response]
         self.data.append(entry)
         self.entries += 1
-
 
     def store_data(self, data):
         """
@@ -188,7 +187,6 @@ class ChatBot:
             except ValueError as e:
                 print(f"\nBrain Error: {str(e)}\n")
 
-
     def chat_main(self):
         """
         Back bone of the ChatBot. Running the different methods.
@@ -207,17 +205,19 @@ class ChatBot:
                 break
             else:
                 response = self.get_response(user_input)
-                print(f"{Style.BRIGHT}{yellow_text}ChatGPT:{Style.BRIGHT}{blue_text} ", response)
+                print(f"{Style.BRIGHT}{yellow_text}ChatGPT:"
+                      f"{Style.BRIGHT}{blue_text} ", response)
                 print(f"{reset_all}")
                 self.chat_log(user_input, response)
 
-# File manipulating Class    
+
+# File manipulating Class
 class FileVault:
     """
     This class is useed to manipulate logs and its only method right now is:
-    # manipulate_logs(): Is used when the user want to pull out the current sessions
-    questions and answers from the Google spreadsheet. The user can choose to
-    delete them or leave them in the Google Spreadsheet.
+    # manipulate_logs(): Is used when the user want to pull out the
+    current sessions questions and answers from the Google spreadsheet.
+    The user can choose to delete them or leave them in the Google Spreadsheet.
     """
     @staticmethod
     def manipulate_logs():
@@ -226,7 +226,7 @@ class FileVault:
         """
         if bot.entries == 0:
             print(f"{Style.BRIGHT}{yellow_text}Sorry, but you do not have"
-                f"anything in your chat logs.")
+                  f"anything in your chat logs.")
             print(f"Let's get you over to the chat terminal to"
                   f"change that!{reset_all}")
             bot.chat_main()
@@ -243,7 +243,8 @@ class FileVault:
 
             while True:
                 try:
-                    choice = input("\nDo you want to erase log? y/n \n").lower()
+                    choice = input("\nDo you want to erase log?"
+                                   "y/n \n").lower()
                     if choice == 'y':
                         print("\nerasing...\n")
                         row_count = len(log_rows)
@@ -259,23 +260,22 @@ class FileVault:
 
                     else:
                         raise ValueError("Pay attention! Please choose"
-                                        "'y' or 'n'.")
+                                         "'y' or 'n'.")
                 except ValueError as e:
                     print(f"\nBrain Error: {str(e)}\n")
 
 
- #_-----------------------------   
-
 def rainbow_text(text):
     """
-    Sprinkles a little bit of fairy dust on the project in the form of rainbow text
-    being typed out.
+    Sprinkles a little bit of fairy dust on the project
+    in the form of rainbow text being typed out.
     """
     colors = [Fore.RED, Fore.YELLOW, Fore.GREEN,
               Fore.CYAN, Fore.BLUE, Fore.MAGENTA]
     colored_chars = [colors[i % len(colors)] +
                      char for i, char in enumerate(text)]
     return "".join(colored_chars)
+
 
 def chat_or_log():
     """
@@ -303,9 +303,10 @@ def chat_or_log():
                 raise ValueError("Sorry, wrong input. Please choose"
                                  "'c' or 'l'.")
         except ValueError as e:
-            print(f"\nError: {str(e)}\n")    
+            print(f"\nError: {str(e)}\n")
 
-#Start here
+
+# Start here
 def startup():
     """
     Initial startup function.
@@ -322,6 +323,7 @@ def startup():
     print(Fore.GREEN + f'\nHello {bot.name} what would you like to do?\n')
     chat_or_log()
 
+
 vault = FileVault()
 bot = ChatBot()
-startup() 
+startup()
