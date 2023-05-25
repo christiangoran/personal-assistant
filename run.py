@@ -194,7 +194,7 @@ def manipulate_logs():
                     chat_or_log()
 
                 else: 
-                    raise ValueError("Pay attention! Please choose 'c' or 'l'.")
+                    raise ValueError("Pay attention! Please choose 'y' or 'n'.")
             except ValueError as e:
                 print(f"\nBrain Error: {str(e)}\n") 
 
