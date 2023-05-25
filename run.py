@@ -153,9 +153,9 @@ def store_data(data):
                 data.clear()
                 break
             else:
-                raise ValueError("\Wrong input. Please answer with 'y' or 'n'.")
+                raise ValueError("Please answer with 'y' or 'n'.")
         except ValueError as e:
-            print(f"\nError: {str(e)}\n")
+            print(f"\nBrain Error: {str(e)}\n")
 
 def manipulate_logs():
     """
@@ -194,9 +194,9 @@ def manipulate_logs():
                     chat_or_log()
 
                 else: 
-                    raise ValueError("Sorry, wrong input. Please choose 'c' or 'l'.")
+                    raise ValueError("Pay attention! Please choose 'c' or 'l'.")
             except ValueError as e:
-                print(f"\nError: {str(e)}\n") 
+                print(f"\nBrain Error: {str(e)}\n") 
 
 def chat_main():
     """
@@ -255,14 +255,14 @@ def rainbow_text(text):
     colored_chars = [colors[i % len(colors)] + char for i, char in enumerate(text)]
     return "".join(colored_chars)
 
-text = "\n Beep beep boot\nWelcome to my...\n"
+text = "\n Beep beep pot\nWelcome to my...\n"
 rainbow = rainbow_text(text)
 
 for char in rainbow:
     print(char, end="", flush=True)
     time.sleep(0.01)
 
-print(pyfiglet.figlet_format("Chat\nBoot", font = "isometric3"))
+print(pyfiglet.figlet_format("Chat Bot", font = "ntgreek"))
 name = get_name()        
 print(Fore.GREEN + f'\nHello {name} what would you like to do?\n')
 chat_or_log()   
