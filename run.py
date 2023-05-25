@@ -262,7 +262,7 @@ for char in rainbow:
     print(char, end="", flush=True)
     time.sleep(0.01)
 
-print(pyfiglet.figlet_format("Chat Bot", font = "ntgreek"))
+print(pyfiglet.figlet_format("Chat-Bot", font = "big"))
 name = get_name()        
 print(Fore.GREEN + f'\nHello {name} what would you like to do?\n')
 chat_or_log()   
