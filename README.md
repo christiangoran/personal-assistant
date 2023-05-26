@@ -118,13 +118,32 @@ After name is entered, the user come to the main menu with two options to select
 
 ## Technology
 ### Languages used
+- [Python](https://www.python.org/) - High-Level, general-purpose programming language.
+- [Markdown](https://en.wikipedia.org/wiki/Markdown) - Markup language used to write README.md and TESTING.md
+
 ### Software used
+- ![GitHub](https://github.com/) - GitHub is used to store repository for the code after being pushed from Git
+- ![Git](https://git-scm.com/) - Git was used for version control by utilizing the CodeAnywhere terminal to commit to Git and Push to GitHub
+- ![CodeAnywhere](https://app.codeanywhere.com/) - Was used as IDE for priting the app.
+- ![Heroku](https://heroku.com/) - Online app used for deployment of project.
+- ![Google Sheets API](https://developers.google.com/sheets/api) - This was used to connect with the database where the spreadsheet is located.
+- ![Open Ai's ChatGPT](https://chat.openai.com) - Used for generating the responses for my ChatBot.
+- ![Draw.io](https://app.diagrams.net/) - Used to create the flow chart diagram.
+
 ### Python libraries/modules
+- ![gspread](https://docs.gspread.org/) - Used for cotron of Google Sheets API.
+- ![openai](https://pypi.org/project/openai/) - Used to interact with OpenAI's machine learning models.
+- ![datetime](https://pypi.org/project/DateTime/) - Used for the chat log timestamps.
+- ![colorama](https://pypi.org/project/colorama/) - Used to create colorful terminal outputs.
+- ![time](https://docs.python.org/3/library/time.html) - Used to create the letter printout in the initial part of the program execution.
+- ![pyfiglet](https://pypi.org/project/pyfiglet/) - Used to create ASCII text.
 
 ## Testing
 ### Acceissibility
 ### Validation
-PEP8
+**PEP8**
+![PEP8CI](https://pep8ci.herokuapp.com/) Was used to lint the code. All modules are clear and no errors were found. The run.py code was showing a few warning regarding whitespaces and code over 80 characters in length. Nothing that affected functionalities and code was interpreted as intended.
+
 ### Bugs/Known Issues
 
 ## Deployment
