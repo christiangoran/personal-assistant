@@ -147,6 +147,9 @@ After name is entered, the user come to the main menu with two options to select
 ![Linter validation](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/pep8ci.png)
 
 ### Bugs/Known Issues
+- While developing the FileVault section, particularly the functionality to erase chat logs from the Google spreadsheet, I encountered a perplexing issue. Despite my code executing without any apparent errors, no log rows were being deleted from the spreadsheet. After investing a significant amount of time, I realized that the commands were not automatically identifying the last row with data. Instead, they were starting from the absolute last row, such as row 999, regardless of whether it contained any data. In hindsight, pretty obvious.
+   - Solution was to add "get_all_values()" that retrieves the cells with data in them.
+
 
 ## Deployment
 ### Git and GitHub
