@@ -150,7 +150,28 @@ After name is entered, the user come to the main menu with two options to select
 
 ## Deployment
 ### Git and GitHub
+1. ![Code Institute Template](https://github.com/Code-Institute-Org/python-essentials-template) was used to create the GitHub public repository ![GitHub Personal Assistant](https://github.com/christiangoran/personal-assistant) In template repository I clicked on "use this template" --> "create new repository", I chose repository name and clicked on the green button "Create repository from template".
+
+I cloned repository to ![CodeAnywhere](https://app.codeanywhere.com/) and used this IDE for coding.
+
+I developed programm, often commiting changes using terminal commands:
+
+    git add .
+    git commit -m "Whatever changes I made"
+    git push
+
+I made sure that all my libraries and packages are listed in requirements.txt.
+
+When program was ready for further deployment I visited heroku.com website to deploy on heroku.
+
 ### Deployment to Heroku
+The deployment to Heroku was made with the help of the Code Institute Love Sandwiches walkthrough video.
+- Buildpacks Python and Nodejs was added.
+- CREDS and & PORT 8000 added to my Config Vars
+
+After a name was selected I deployed the project.
+
+During the deployment however I noticed that the program was running extremely slow, or mostly hardly starting up at all. After trying to find a solution to the problem without success I removed the entire project from Heroku and re-deployed it. This time it worked like a charm 👌🏼
 
 ## Possible Future Developent
 If I would have had more time I would have:
