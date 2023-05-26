@@ -7,7 +7,7 @@ The ChatBot app was created as a Porfolio Project #3 (Python Essentials) for Dip
     * [Strategy/Scope](#strategyscope)
     * [Site owner goals](#site-owner-goals)
     * [External user's goal](#external-users-goal)
-2. [User Experience (UX/UI)](#user-experience-uxui)
+2. [User Experience (UX/UI)](#user-experience-(uxui))
     * [Colour Scheme](#colour-scheme)
 3. [Logic and features](#logic-and-features)
     * [Python logic](#python-logic)
