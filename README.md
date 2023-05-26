@@ -142,7 +142,9 @@ After name is entered, the user come to the main menu with two options to select
 ### Acceissibility
 ### Validation
 **PEP8**
+
 ![PEP8CI](https://pep8ci.herokuapp.com/) Was used to lint the code. All modules are clear and no errors were found. The run.py code was showing a few warning regarding whitespaces and code over 80 characters in length. Nothing that affected functionalities and code was interpreted as intended.
+![Linter validation](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/pep8ci.png)
 
 ### Bugs/Known Issues
 
@@ -151,6 +153,13 @@ After name is entered, the user come to the main menu with two options to select
 ### Deployment to Heroku
 
 ## Possible Future Developent
+If I would have had more time I would have:
+- Added more extensive log retrieving functions. I had already a version up and running where the user could access their logs based on their name as keyword. Therefore being able to bring out logs from not only current session but all sessions under the same user name.
+- More specific log deletion where the user can select wether they would like to delete all the logs under their name or only todays logs. This was also working besides the little detail that the logs were not actually deleted from the Google Spreadsheet. Due to lack of time I had to revert back to a more scaled down version of log manipulation.
+
+The fact that the ChatBot does not have a memory was a choice I did for financial reasons. The requests being sent to OpenAi are "token" based, meaning they are built up by the use of characters in combination with one another, so it is more complex thatn to say 1 token is 1 character, but the number of tokens being sent of to OpenAi also increases the cost of each request. Therefore I chose not to include each increasing number of questions and answers with the requests.
+
+Future development will include a model of the ChatGPT with trained with custom data, and is the original reason for me to create this foundation of a project. With this, the need for including a memory to the chatbot will be necessary.
 
 ## Credits
 ### Code
