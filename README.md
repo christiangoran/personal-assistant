@@ -7,7 +7,7 @@ The ChatBot app was created as a Porfolio Project #3 (Python Essentials) for Dip
     * [Strategy/Scope](#strategyscope)
     * [Site owner goals](#site-owner-goals)
     * [External user's goal](#external-users-goal)
-2. [User Experience (UX/UI)](#user-experience-(uxui))
+2. [User Experience UX/UI)](#user-experience-uxui)
     * [Colour Scheme](#colour-scheme)
 3. [Logic and features](#logic-and-features)
     * [Python logic](#python-logic)
@@ -66,7 +66,7 @@ As a user of the application I would like to:
 - Have a fun experience while using the program
 - No bug encounters
 
-## User Experience (UX)
+## User Experience UX/UI
 ### Colour Scheme
 As this is not the usual front end project, the colors selected were:
 - Red
