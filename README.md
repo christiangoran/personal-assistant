@@ -173,7 +173,7 @@ After a name was selected I deployed the project.
 
 During the deployment however I noticed that the program was running extremely slow, or mostly hardly starting up at all. After trying to find a solution to the problem without success I removed the entire project from Heroku and re-deployed it. This time it worked like a charm 👌🏼
 
-## Possible Future Developent
+## Possible Future Developents
 If I would have had more time I would have:
 - Added more extensive log retrieving functions. I had already a version up and running where the user could access their logs based on their name as keyword. Therefore being able to bring out logs from not only current session but all sessions under the same user name.
 - More specific log deletion where the user can select wether they would like to delete all the logs under their name or only todays logs. This was also working besides the little detail that the logs were not actually deleted from the Google Spreadsheet. Due to lack of time I had to revert back to a more scaled down version of log manipulation.
