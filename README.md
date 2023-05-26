@@ -86,23 +86,31 @@ You find a PDF version [here](https://github.com/christiangoran/personal-assista
 ### Database Structure
 Google Sheets services is used to store project's database in the spreadsheet. There is one worksheet called log that is used to store the timestamp of a question, user name, question and answer.
 
-ENTER LINK TO PHOTO HERE
+![Google Spreadsheet chat log](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/chatlog.png)
 
 
 ### Features
 
 #### Welcome Text & Name Input
-Start screen of the application starts with rainbow colored welcome text being printed out followed by an ASCII logo.
+- Start screen of the application starts with rainbow colored welcome text being printed out followed by an ASCII logo.
+- User is thereafter asked to enter their name.
+![Welcome](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/welcome.png)
 
-User is thereafter asked to enter their name.
 
-Input is validated and needs to be at least three letters long.
+- Input is validated and needs to be at least three letters long.
+![Wrong name length](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/wrongnamelength.png)
 
 #### Main Menu
 After name is entered, the user come to the main menu with two options to select.
-1. Using
+1. Using the ChatBot by pressing "c"
+2. or accessing their log by pressing "l"
+![Main menu](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/mainmenu.png)
+
+- Input is validated
+![Wrong main menu input](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/wrongmenuinput.png)
 
 #### ChatBot
+
 
 #### Store Logs
 #### Access Logs
