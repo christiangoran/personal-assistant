@@ -55,7 +55,7 @@ My goal as a developer for this project is to:
 - Create an application that give clear and proper feedback for both valid and invalid input
 - Create an application that is free from bugs
 - An above all create an application that works as a good foundation for further improvements as the developers knowledge of both programming in general and knowledge of the OpenAi library increases.
-- 
+
 ### External user's goal
 As a user of the application I would like to:
 - Immediately understand what the application should be used for
@@ -65,9 +65,17 @@ As a user of the application I would like to:
 - To be able to exit
 - Have a fun experience while using the program
 - No bug encounters
-- 
+
 ## User Experience (UX)
 ### Colour Scheme
+As this is not the usual front end project, the colors selected were:
+- Red
+- Yellow
+- Blue
+- Green
+
+Terminal outputs are displayed in high-contrast colours over black background for better readability and accesibillity. 
+
 
 ## Logic and features
 ### Python Logic
