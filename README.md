@@ -79,10 +79,30 @@ Terminal outputs are displayed in high-contrast colours over black background fo
 
 ## Logic and features
 ### Python Logic
+A flow diagram of the logice for the ChatBot application was created with the use of ![Draw.io](https://app.diagrams.net/)
+You find a PDF version ![here] LINK PDF VERSION HERE!
+
 ### Database Structure
+Google Sheets services is used to store project's database in the spreadsheet. There is one worksheet called log that is used to store the timestamp of a question, user name, question and answer.
+
+ENTER LINK TO PHOTO HERE
+
+
 ### Features
+
+#### Welcome Text & Name Input
+Start screen of the application starts with rainbow colored welcome text being printed out followed by an ASCII logo.
+
+User is thereafter asked to enter their name.
+
+Input is validated and needs to be at least three letters long.
+
 #### Main Menu
+After name is entered, the user come to the main menu with two options to select.
+1. Using
+
 #### ChatBot
+
 #### Store Logs
 #### Access Logs
 #### Exit
