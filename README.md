@@ -25,7 +25,7 @@ The ChatBot app was created as a Porfolio Project #3 (Python Essentials) for Dip
     * [Accessibility](#accessibility)
     * [Validation](#validation)
     * [Manual testing](#manual-testing)
-    * [Bugs/known issues](#bugs-known-issues)
+    * [Bugs/known issues](#bugsknown-issues)
 6. [Deployment](#deployment)
     * [Git and GitHub](#git-and-github)
     * [Deployment to Heroku](#deployment-to-heroku)
