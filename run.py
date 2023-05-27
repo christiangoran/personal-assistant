@@ -72,8 +72,8 @@ class ChatBot:
         """
         while True:
             try:
-                self.name = input(f'{Style.BRIGHT}{green_text}Please enter your'
-                                  f' name:\n{reset_all}')
+                self.name = input(f'{Style.BRIGHT}{green_text}Please enter '
+                                  f'your name:\n{reset_all}')
                 if self.validate_name(self.name):
                     break
             except ValueError:
@@ -85,9 +85,9 @@ class ChatBot:
         """
         try:
             if value.isdigit():
-                raise ValueError(f'{Style.BRIGHT}{red_text}No, no numbers allowed'
-                                 f' unless you are a Star Wars droid.'
-                                 f' Sorry Elon Musk{reset_all}')
+                raise ValueError(f'{Style.BRIGHT}{red_text}No, no numbers '
+                                 f'allowed unless you are a Star Wars droid.'
+                                 f'\n Sorry Elon Musk{reset_all}')
             elif len(value) < 3:
                 raise ValueError(f"Please enter at least 3 letter as a name")
         except ValueError as e:
@@ -101,12 +101,12 @@ class ChatBot:
         Takes question input from the user.
         """
         while True:
-            user_input = input(f"\n{Style.BRIGHT}{green_text}Please enter your" 
+            user_input = input(f"\n{Style.BRIGHT}{green_text}Please enter your"
                                " question, and"
                                f" sorry my circuits are a bit"
                                f"{red_text} BURNT{green_text}"
                                " out at the moment, so I will not"
-                               f"{yellow_text} REMEMBER " 
+                               f"{yellow_text} REMEMBER "
                                f"{green_text}your previous question.\n"
                                f'Again if you would like to leave the program,'
                                f' just type{red_text}'
@@ -155,8 +155,8 @@ class ChatBot:
             else:
                 return "Something went wrong, please try again."
         except Exception as e:
-                print(f"{Style.BRIGHT}{red_text}Something went wrong:\n\n"
-                       f" {str(e)}.\n\nPlease try again.{reset_all}")
+            print(f"{Style.BRIGHT}{red_text}Something went wrong:\n\n"
+                  f" {str(e)}.\n\nPlease try again.{reset_all}")
 
     def chat_log(self, user_input, response):
         """
@@ -194,7 +194,7 @@ class ChatBot:
                 else:
                     raise ValueError("Please answer with 'y' or 'n'.")
             except ValueError as e:
-                print(f"{Style.BRIGHT}{red_text}\nBrain Error:" 
+                print(f"{Style.BRIGHT}{red_text}\nBrain Error:"
                       f"{str(e)}\n{reset_all}")
 
     def chat_main(self):
@@ -305,7 +305,8 @@ def chat_or_log():
                            f" the chat bot \nor press (l)"
                            f"to access your chat log: \n{reset_all}").lower()
             if choice == 'c':
-                print(f'\n{Style.BRIGHT}{green_text}Ok, then chat bot it is!\n')
+                print(f'\n{Style.BRIGHT}{green_text}Ok, then chat bot it '
+                      'is!\n')
                 print('The question should contain at least 10 characters')
                 print(f'and if you would like to leave the program, just'
                       f' type{Style.BRIGHT}{red_text} "exit"{reset_all}.\n')
