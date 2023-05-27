@@ -68,11 +68,12 @@ As a user of the application I would like to:
 
 ## User Experience UX/UI
 ### Colour Scheme
-As this is not the usual front end project, the colors selected were:
-- Red
-- Yellow
-- Blue
-- Green
+The closest I came to design of the project were color text selection with the help of colorama library:
+- **Red** - Generally used for error messages
+- **Yellow** - Used for ChatGPT and highlighted messages
+- **Teal** - Used for log entries
+- **Green** - Used for general text
+- **White** - Used for standard chat en input prompts
 
 Terminal outputs are displayed in high-contrast colours over black background for better readability and accesibillity. 
 
@@ -117,6 +118,7 @@ After name is entered, the user come to the main menu with two options to select
 #### Exit
 
 ## Technology
+
 ### Languages used
 - [Python](https://www.python.org/) - High-Level, general-purpose programming language.
 - [Markdown](https://en.wikipedia.org/wiki/Markdown) - Markup language used to write README.md and TESTING.md
@@ -129,6 +131,8 @@ After name is entered, the user come to the main menu with two options to select
 - ![Google Sheets API](https://developers.google.com/sheets/api) - This was used to connect with the database where the spreadsheet is located.
 - ![Open Ai's ChatGPT](https://chat.openai.com) - Used for generating the responses for my ChatBot.
 - ![Draw.io](https://app.diagrams.net/) - Used to create the flow chart diagram.
+- [WebAIM](https://webaim.org/resources/contrastchecker/) - online tool to check colour contrast/accesibility.
+- [CI Python Linter](https://pep8ci.herokuapp.com/) - Code Institute online python code validataor.
 
 ### Python libraries/modules
 - ![gspread](https://docs.gspread.org/) - Used for cotron of Google Sheets API.
@@ -145,6 +149,10 @@ After name is entered, the user come to the main menu with two options to select
 
 ![PEP8CI](https://pep8ci.herokuapp.com/) Was used to lint the code. All modules are clear and no errors were found. The run.py code was showing a few warning regarding whitespaces and code over 80 characters in length. Nothing that affected functionalities and code was interpreted as intended.
 ![Linter validation](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/pep8ci.png)
+
+### Manual testing
+
+- Detailed manual testing procedure can be found in [TESTING.md file](https://github.com/christiangoran/personal-assistant/blob/main/TESTING.md)
 
 ### Bugs/Known Issues
 - While developing the FileVault section, particularly the functionality to erase chat logs from the Google spreadsheet, I encountered a perplexing issue. Despite my code executing without any apparent errors, no log rows were being deleted from the spreadsheet. After investing a significant amount of time, I realized that the commands were not automatically identifying the last row with data. Instead, they were starting from the absolute last row, such as row 999, regardless of whether it contained any data. In hindsight, pretty obvious.
