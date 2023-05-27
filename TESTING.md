@@ -1,6 +1,6 @@
 # Manual testing of validation and functionalities
 
-The testing was ongoing during development and the thousands of times that the code has ben executed to test various lines of code. Manual testing was done to check all inputs and features. <br>
+The testing was ongoing during development and the thousands of times that the code has been executed to test various lines of code. Manual testing was done to check all inputs and features. <br>
 Spelling and typo errors were fixed during the development.
 
 
