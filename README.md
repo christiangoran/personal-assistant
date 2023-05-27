@@ -164,6 +164,8 @@ After name is entered, the user come to the main menu with two options to select
 - While developing the FileVault section, particularly the functionality to erase chat logs from the Google spreadsheet, I encountered a perplexing issue. Despite my code executing without any apparent errors, no log rows were being deleted from the spreadsheet. After investing a significant amount of time, I realized that the commands were not automatically identifying the last row with data. Instead, they were starting from the absolute last row, such as row 999, regardless of whether it contained any data. In hindsight, pretty obvious.
    - Solution was to add "get_all_values()" that retrieves the cells with data in them.
 
+- I did not manage to find a way to wrap ChatGPT's answer within 80 characters, so there is an overflow that can break in the middle of words at the moment.
+
 
 ## Deployment
 ### Git and GitHub
