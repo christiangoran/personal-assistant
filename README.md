@@ -1,4 +1,4 @@
-![Welcome text](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/welcome.png)
+![Welcome text](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/start.png)
 
 The ChatBot app was created as a Porfolio Project #3 (Python Essentials) for Diploma in Full Stack Software Development at Code Institute. It allows the user to ask questions about anything to the my very own Chatbot(API connected ChatGPT). The questions and answers are stored locally during the session and the user also has the option to store the chat logs in a Google Spreadsheet.
 
@@ -17,7 +17,6 @@ The ChatBot app was created as a Porfolio Project #3 (Python Essentials) for Dip
     * [ChatBot](#chatbot)
     * [Store Logs](#store-logs)
     * [Access Logs](#access-logs)
-    * [Exit](#exit)
 4. [Technology](#technology)
     * [Software used](#software-used)
     * [Python libraries/modules](#python-librariesmodules)
@@ -29,10 +28,10 @@ The ChatBot app was created as a Porfolio Project #3 (Python Essentials) for Dip
 6. [Deployment](#deployment)
     * [Git and GitHub](#git-and-github)
     * [Deployment to Heroku](#deployment-to-heroku)
-7. [Possible future development](#possible-future-development)
+7. [Possible future developments](#possible-future-developments)
 8. [Credits](#credits)
     * [Code](#code)
-    * [Media](#media)
+    * [Learning Resources](#learning-resources)
     * [Acknowledgments](#acknowledgments)
 
 
@@ -47,7 +46,7 @@ To achieve the strategy goals I implemented the following fueatures:
 - A quick and smooth connection to database with Google
 - A well designed terminal display for best experience
 
-### Site owners goals
+### Site owner goals
 My goal as a developer for this project is to:
 - Create an application that has a real life usage
 - Create an application that is intuitive
@@ -95,27 +94,68 @@ Google Sheets services is used to store project's database in the spreadsheet. T
 #### Welcome Text & Name Input
 - Start screen of the application starts with rainbow colored welcome text being printed out followed by an ASCII logo.
 - User is thereafter asked to enter their name.
-![Welcome](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/welcome.png)
+- 
+![Welcome](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/start.png)
 
 
 - Input is validated and needs to be at least three letters long.
-![Wrong name length](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/wrongnamelength.png)
+- 
+![Wrong name length](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/invalidname2.png)
 
 #### Main Menu
 After name is entered, the user come to the main menu with two options to select.
 1. Using the ChatBot by pressing "c"
 2. or accessing their log by pressing "l"
-![Main menu](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/mainmenu.png)
+
+![Welcome *name*](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/Screenshot%202023-05-27%20at%2023.47.01.png)
 
 - Input is validated
-![Wrong main menu input](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/wrongmenuinput.png)
+
+![Wrong main menu input](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/mainmenuerror.png)
 
 #### ChatBot
+If user selects "c" the ChatBot function starts.
 
+![ChatBot](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/okchatbot.png)
+
+The user receives some further instructions before being able to enter a question.
+
+![Further instructions](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/instructionprompt.png)
+
+And then after a valid question is entered.
+
+![Question & Response](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/questionresponse.png)
 
 #### Store Logs
+When the user types "exit", the chatbot loop is broken and the user is presented with the questions and answers stored from his current session together with username and timestamp.
+
+![Do you want to save these logs?](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/log.png)
+
+User is asked if the logs should be saved.
+
+![Save?](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/wanttosave.png)
+
+And is "y" is selected, the logs are stored.
+
+![Saved](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/savedit.png)
+
 #### Access Logs
-#### Exit
+If user selects to access logs from the main menu with "c", FileVault starts.
+If logs are empty a notification saying so appears before taking the user to the ChatBot.
+
+![No logs](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/sorrybutnologs.png)
+
+And if there are any logs saved they will be retrieved and written out in the terminal.
+
+![log retrieval](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/%20storedlog.png)
+
+And asked wether the user wants to erase or not. If wrong input is entered an error message appears.
+
+![Erase or not? y/n](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/wanttoerase.png)
+
+If user selects "y"
+
+![Logs are erased](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/erasing-logs.png)
 
 ## Technology
 
@@ -192,7 +232,7 @@ After a name was selected I deployed the project.
 
 During the deployment however I noticed that the program was running extremely slow, or mostly hardly starting up at all. After trying to find a solution to the problem without success I removed the entire project from Heroku and re-deployed it. This time it worked like a charm 👌🏼
 
-## Possible Future Developents
+## Possible Future Developments
 If I would have had more time I would have:
 - Added more extensive log retrieving functions. I had already a version up and running where the user could access their logs based on their name as keyword. Therefore being able to bring out logs from not only current session but all sessions under the same user name.
 - More specific log deletion where the user can select wether they would like to delete all the logs under their name or only todays logs. This was also working besides the little detail that the logs were not actually deleted from the Google Spreadsheet. Due to lack of time I had to revert back to a more scaled down version of log manipulation.
@@ -215,7 +255,7 @@ Future development will include a model of the ChatGPT with trained with custom 
 - [ChatGPT Youtube tutorial](https://www.youtube.com/watch?v=c-g6epk3fFE)
 - [freecodecamp.org](https://www.youtube.com/watch?v=uRQH2CFvedY&t=649s)
 
-### Aknowledgements
+### Acknowledgments
 
 -   My Mentor Gareth McGirr for valuable feedback and guidance throughout the project.
 -   Code Institute Slack Community for being invaluable knowledge base.
