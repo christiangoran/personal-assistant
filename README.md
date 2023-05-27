@@ -1,6 +1,6 @@
 ![Welcome text](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/welcome.png)
 
-The ChatBot app was created as a Porfolio Project #3 (Python Essentials) for Diploma in Full Stack Software Development at Code Institute. It allows the user to ask questions about anything to the my very own bot. The questions and answers are stored locally during the session and the user also has the option to store the chat logs in a Google Spreadsheet 
+The ChatBot app was created as a Porfolio Project #3 (Python Essentials) for Diploma in Full Stack Software Development at Code Institute. It allows the user to ask questions about anything to the my very own Chatbot(API connected ChatGPT). The questions and answers are stored locally during the session and the user also has the option to store the chat logs in a Google Spreadsheet.
 
 ## Table of content
 1. [Project](#project)
@@ -82,7 +82,7 @@ Terminal outputs are displayed in high-contrast colours over black background fo
 ### Python Logic
 A flow diagram of the logice for the ChatBot application was created with the use of ![Draw.io](https://app.diagrams.net/)
 ![Flow chart diagram](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/chatbot-flowchart.png)
-You find a PDF version [here](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/chatbot-flowchart.png)
+You find the PNG version [here](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/chatbot-flowchart.png)
 
 ### Database Structure
 Google Sheets services is used to store project's database in the spreadsheet. There is one worksheet called log that is used to store the timestamp of a question, user name, question and answer.
@@ -201,5 +201,20 @@ Future development will include a model of the ChatGPT with trained with custom 
 
 ## Credits
 ### Code
-### Media
+- Google Sheets API connection method is taken from Love Sandwiches CI Project and gspread documentation 
+
+### Learning Resources
+- [Code Institute course and learning platform](https://codeinstitute.net/)
+- [W3Schools](https://www.w3schools.com/python/default.asp)
+- [StackOverflow](https://stackoverflow.com/)
+- [Google Sheets API documentation](https://developers.google.com/sheets/api/quickstart/python)
+- [Gspread documentation](https://docs.gspread.org/en/v5.7.0/)
+- [OpenAI Repository](https://github.com/openai/openai-python)
+- [ChatGPT Youtube tutorial](https://www.youtube.com/watch?v=c-g6epk3fFE)
+- [freecodecamp.org](https://www.youtube.com/watch?v=uRQH2CFvedY&t=649s)
+
 ### Aknowledgements
+
+-   My Mentor Gareth McGirr for valuable feedback and guidance throughout the project.
+-   Code Institute Slack Community for being invaluable knowledge base.
+-   Special thanks to class mates @Katerina and @Starhigh for taking the time to look through the app and give feedback. 
