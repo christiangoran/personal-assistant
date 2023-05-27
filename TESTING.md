@@ -26,8 +26,6 @@ Method for validating name is validate_name()
 
 ## ChatBot
 
-Function used for inputs validation - validate_yes_no() in utils/utils.py
-
 |  What is being tested  | Input  | Expected response  | Result
 |---|---|---|---|
 |  Question, minimum 10 characters | Less than 10 characters  | Invalid Data  | Pass
