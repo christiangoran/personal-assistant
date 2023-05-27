@@ -32,7 +32,7 @@ red_text = Fore.RED
 green_text = Fore.GREEN
 reset_all = Style.RESET_ALL
 yellow_text = Fore.YELLOW
-blue_text = Fore.BLUE
+blue_text = Fore.CYAN
 
 
 # Main Class
@@ -72,7 +72,8 @@ class ChatBot:
         """
         while True:
             try:
-                self.name = input('Please enter your name:\n')
+                self.name = input(f'{Style.BRIGHT}{green_text}Please enter your'
+                                  f' name:\n{reset_all}')
                 if self.validate_name(self.name):
                     break
             except ValueError:
@@ -84,15 +85,14 @@ class ChatBot:
         """
         try:
             if value.isdigit():
-                raise ValueError(f'{reset_all}No, no numbers allowed'
-                                 f'unless you'
-                                 f' are a{Style.BRIGHT}{yellow_text} Star Wars'
-                                 f'droid.{Style.BRIGHT}{red_text}'
-                                 f' Sorry Elon Musk!{reset_all}')
+                raise ValueError(f'{Style.BRIGHT}{red_text}No, no numbers allowed'
+                                 f' unless you are a Star Wars droid.'
+                                 f' Sorry Elon Musk{reset_all}')
             elif len(value) < 3:
-                raise ValueError(f"Please enter at least 3 letter as a name.")
+                raise ValueError(f"Please enter at least 3 letter as a name")
         except ValueError as e:
-            print(f"\nInvalid data: {e}. Please try again.\n")
+            print(f"\n{Style.BRIGHT}{red_text}Invalid data: {e}"
+                  f"{Style.BRIGHT}{red_text}. Please try again.{reset_all}\n")
             return False
         return True
 
@@ -101,16 +101,20 @@ class ChatBot:
         Takes question input from the user.
         """
         while True:
-            user_input = input(f"\n{reset_all}Please enter your question, and"
+            user_input = input(f"\n{Style.BRIGHT}{green_text}Please enter your" 
+                               " question, and"
                                f" sorry my circuits are a bit"
-                               f"{Style.BRIGHT}{red_text} BURNT{reset_all}"
+                               f"{red_text} BURNT{green_text}"
                                " out at the moment, so I will not"
-                               f"{Style.BRIGHT}{green_text}"
-                               f"REMEMBER{reset_all}"
-                               " your previous question.\n")
+                               f"{yellow_text} REMEMBER " 
+                               f"{green_text}your previous question.\n"
+                               f'Again if you would like to leave the program,'
+                               f' just type{red_text}'
+                               f' "exit"{reset_all}.\n')
 
             if self.validate_input(user_input):
-                print('\nPlease wait a minute.\n')
+                print(f'\n{Style.BRIGHT}{yellow_text}Please wait'
+                      f' a minute.\n{reset_all}')
                 break
         return user_input
 
@@ -122,15 +126,16 @@ class ChatBot:
         try:
             if values.lower() == "exit":
                 print(f'\n{Style.BRIGHT}{green_text} We are exiting the'
-                      f'terminal'
+                      f' terminal'
                       f' for you {self.name}{reset_all}')
                 return True  # "exit" to end the loop
             elif len(values) < 10:
-                raise ValueError(f'More than {Style.BRIGHT}{red_text}'
-                                 f'10{reset_all} characters'
+                raise ValueError(f'More than '
+                                 f'10 characters'
                                  f' required, you provided {len(values)}')
         except ValueError as e:
-            print(f'Invalid data: {e}, please try again.')
+            print(f'{Style.BRIGHT}{red_text}Invalid data: {e},'
+                  f' please try again.{reset_all}')
             return False
         return True
 
@@ -150,7 +155,8 @@ class ChatBot:
             else:
                 return "Something went wrong, please try again."
         except Exception as e:
-            return f"Something went wrong:\n\n {str(e)}.\n\nPlease try again."
+                print(f"{Style.BRIGHT}{red_text}Something went wrong:\n\n"
+                       f" {str(e)}.\n\nPlease try again.{reset_all}")
 
     def chat_log(self, user_input, response):
         """
@@ -168,16 +174,19 @@ class ChatBot:
         """
         while True:
             try:
-                answer = input("\nWould you like to save your chat-log?"
-                               "(y/n): \n").lower()
+                answer = input(f"\n{Style.BRIGHT}{green_text}Would you"
+                               " like to save your chat-log?"
+                               f"(y/n): \n{reset_all}").lower()
                 if answer == 'y':
                     for sublist in self.data:
                         log.append_row(sublist)
-                    print("ok, we saved it for you.\n")
+                    print(f"{Style.BRIGHT}{green_text}ok, we"
+                          f" saved it for you.{reset_all}\n")
                     self.data.clear()
                     return False
                 elif answer == 'n':
-                    print("Ok, we did not save it.\n")
+                    print(f"{Style.BRIGHT}{green_text}Ok, "
+                          f"we did not save it.{reset_all}\n")
                     reduction = len(self.data)
                     self.entries -= reduction
                     self.data.clear()
@@ -185,7 +194,8 @@ class ChatBot:
                 else:
                     raise ValueError("Please answer with 'y' or 'n'.")
             except ValueError as e:
-                print(f"\nBrain Error: {str(e)}\n")
+                print(f"{Style.BRIGHT}{red_text}\nBrain Error:" 
+                      f"{str(e)}\n{reset_all}")
 
     def chat_main(self):
         """
@@ -194,20 +204,21 @@ class ChatBot:
         while True:
             user_input = self.get_user_input()
             if user_input.lower() == "exit":
-                print("This is your chat log: \n")
+                print(f"{Style.BRIGHT}{green_text}This is"
+                      f" your chat log: \n")
                 for row in self.data:
                     print(f'{Style.BRIGHT}{blue_text}')
                     print(row)
                     print(f'{reset_all}')
                 self.store_data(self.entries)
-                print(f"What would you like to do now?")
+                print(f"{Style.BRIGHT}{green_text}What would"
+                      f" you like to do now?{reset_all}")
                 chat_or_log()
                 break
             else:
                 response = self.get_response(user_input)
                 print(f"{Style.BRIGHT}{yellow_text}ChatGPT:"
-                      f"{Style.BRIGHT}{blue_text} ", response)
-                print(f"{reset_all}")
+                      f"{reset_all} ", response)
                 self.chat_log(user_input, response)
 
 
@@ -226,9 +237,9 @@ class FileVault:
         """
         if bot.entries == 0:
             print(f"{Style.BRIGHT}{yellow_text}Sorry, but you do not have"
-                  f"anything in your chat logs.")
+                  f" anything in your chat logs.")
             print(f"Let's get you over to the chat terminal to"
-                  f"change that!{reset_all}")
+                  f" change that!{reset_all}")
             bot.chat_main()
         else:
             print(f"You have {bot.entries} stored: ")
@@ -243,26 +254,33 @@ class FileVault:
 
             while True:
                 try:
-                    choice = input("\nDo you want to erase log?"
-                                   "y/n \n").lower()
+                    choice = input(f"\n{Style.BRIGHT}{green_text}Do you"
+                                   f" want to{Style.BRIGHT}{red_text} "
+                                   "erase log?"
+                                   f"{Style.BRIGHT}{green_text} y/n"
+                                   f" \n{reset_all}").lower()
                     if choice == 'y':
-                        print("\nerasing...\n")
+                        print(f"\n{Style.BRIGHT}{red_text}erasing..."
+                              f"{reset_all}\n")
                         row_count = len(log_rows)
                         start_row = total_rows - row_count + 1
                         log.delete_rows(start_row, total_rows)
-                        print(f'{row_count} logs deleted')
+                        print(f'{Style.BRIGHT}{green_text}{row_count} '
+                              'logs deleted')
                         bot.entries = 0
                         chat_or_log()
                         return True
                     elif choice == 'n':
-                        print("\nWe will keep the log for you!\n")
+                        print(f"\n{Style.BRIGHT}{green_text}We will"
+                              " keep the log for you!\n")
                         chat_or_log()
 
                     else:
                         raise ValueError("Pay attention! Please choose"
                                          "'y' or 'n'.")
                 except ValueError as e:
-                    print(f"\nBrain Error: {str(e)}\n")
+                    print(f"\n{Style.BRIGHT}{red_text}Brain Error: "
+                          f"{str(e)}{reset_all}\n")
 
 
 def rainbow_text(text):
@@ -287,7 +305,7 @@ def chat_or_log():
                            f" the chat bot \nor press (l)"
                            f"to access your chat log: \n{reset_all}").lower()
             if choice == 'c':
-                print(f'\n{reset_all}Ok, then chat bot it is!\n')
+                print(f'\n{Style.BRIGHT}{green_text}Ok, then chat bot it is!\n')
                 print('The question should contain at least 10 characters')
                 print(f'and if you would like to leave the program, just'
                       f' type{Style.BRIGHT}{red_text} "exit"{reset_all}.\n')
@@ -296,14 +314,16 @@ def chat_or_log():
                 bot.chat_main()
                 return True
             elif choice == 'l':
-                print("\nOk, let's pull out your log!\n")
+                print(f"\n{Style.BRIGHT}{green_text}Ok, "
+                      f"let's pull out your log!\n")
                 vault.manipulate_logs()
 
             else:
                 raise ValueError("Sorry, wrong input. Please choose"
                                  "'c' or 'l'.")
         except ValueError as e:
-            print(f"\nError: {str(e)}\n")
+            print(f"\n{Style.BRIGHT}{red_text}Error: "
+                  f"{str(e)}\n{reset_all}")
 
 
 # Start here
@@ -320,7 +340,8 @@ def startup():
 
     print(pyfiglet.figlet_format("Chat-Bot", font="big"))
     bot.get_name()
-    print(Fore.GREEN + f'\nHello {bot.name} what would you like to do?\n')
+    print(f'{Style.BRIGHT}{green_text}\nHello {bot.name}'
+          ' what would you like to do?\n')
     chat_or_log()
 
 
