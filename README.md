@@ -143,7 +143,13 @@ After name is entered, the user come to the main menu with two options to select
 - ![pyfiglet](https://pypi.org/project/pyfiglet/) - Used to create ASCII text.
 
 ## Testing
-### Acceissibility
+### Accessibility
+![WebAIM](https://webaim.org/resources/contrastchecker/) was used to check color contrast of terminal colours. All colors passed the test to a satisfactory level.
+![Green](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/contrast-green.png)
+![Teal](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/contrast-teal.png)
+![Yellow](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/contrast-yellow.png)
+![Red](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/contrast-red.png)
+
 ### Validation
 **PEP8**
 
