@@ -105,7 +105,7 @@ class ChatBot:
                                " question, and"
                                f" sorry my circuits are a bit"
                                f"{red_text} BURNT{green_text}"
-                               "\n out at the moment, "
+                               "\nout at the moment, "
                                f"so I will not{yellow_text} REMEMBER "
                                f"{green_text}your previous question.\n"
                                f'Again if you would like to leave the program,'
