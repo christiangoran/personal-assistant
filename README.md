@@ -1,6 +1,12 @@
+# Beep Beep Pot - My ChatBot!
+
+The ChatBot app was created as a Porfolio Project #3 (Python Essentials) for Diploma in Full Stack Software Development at Code Institute. It allows the user to ask questions about anything to the my very own Chatbot (API connected ChatGPT 🤫). The questions and answers are stored locally during the session and the user also has the option to store the chat logs in a Google Spreadsheet.
+
+![Here is a live version of my project](https://chat-boot.herokuapp.com/)
+
 ![Welcome text](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/start.png)
 
-The ChatBot app was created as a Porfolio Project #3 (Python Essentials) for Diploma in Full Stack Software Development at Code Institute. It allows the user to ask questions about anything to the my very own Chatbot(API connected ChatGPT). The questions and answers are stored locally during the session and the user also has the option to store the chat logs in a Google Spreadsheet.
+
 
 ## Table of content
 1. [Project](#project)
