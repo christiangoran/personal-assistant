@@ -90,9 +90,26 @@ A flow diagram of the logice for the ChatBot application was created with the us
 You find the PNG version [here](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/chatbot-flowchart.png)
 
 ### Database Structure
+
+#### Google API
 Google Sheets services is used to store project's database in the spreadsheet. There is one worksheet called log that is used to store the timestamp of a question, user name, question and answer.
 
 ![Google Spreadsheet chat log](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/chatlog.png)
+
+#### ChatGPT Integration
+This project integrates OpenAI's language model, ChatGPT, for its core functionality. 
+
+Method: get_response
+
+The get_response method is the core of the interaction with the OpenAI API. It takes user input as an argument and sends it to the ChatGPT model for processing.
+
+The function begins by creating a ChatCompletion object using the openai.ChatCompletion.create method. This method takes two parameters: the model to be used (in this case, "gpt-3.5-turbo") and a list of messages. In our case, the list of messages only contains one message, which is the user's input, and it is assigned the role of "assistant".
+
+The ChatCompletion.create method sends a POST request to the OpenAI API, which processes the user's input and generates a response. The response is returned as a ChatCompletion object.
+
+If the ChatCompletion object contains choices (i.e., generated responses), the function returns the content of the first choice. If no choices are generated (which could happen if there's an issue with the input or the API), the function returns a default error message.
+
+In case of any exceptions during the process, such as network issues or API errors, the function catches the exception and prints an error message, along with the exception details. This helps in debugging and understanding what went wrong during the interaction with the API.
 
 
 ### Features
@@ -230,13 +247,29 @@ I made sure that all my libraries and packages are listed in requirements.txt.
 When program was ready for further deployment I visited heroku.com website to deploy on heroku.
 
 ### Deployment to Heroku
-The deployment to Heroku was made with the help of the Code Institute Love Sandwiches walkthrough video.
-- Buildpacks Python and Nodejs was added.
-- CREDS and & PORT 8000 added to my Config Vars
+1. I visited [https://heroku.com/](https://heroku.com/) and opened dashboard. Then I clicked button "New" and selected "Create new app" button.
 
-After a name was selected I deployed the project.
+2. I entered my app name as "chat-boot" since "personal-assistant" was not available, chose region to Europe and clicked on "Create app" button
 
-During the deployment however I noticed that the program was running extremely slow, or mostly hardly starting up at all. After trying to find a solution to the problem without success I removed the entire project from Heroku and re-deployed it. This time it worked like a charm 👌🏼
+3. The next step was to go to "Deploy" tab and then to "Deployment method" section to authorize and connect my GitHub account.
+
+4. Upon succesfull connection I selected main branch from "personal-assistant" repository.
+
+5. Then I went to "Settings" tab...
+
+6. ... and next to "Buildpacks" section. In the next step I added pyhton and nodejs buildpacks. Order here is very important.
+
+7. In the next step I went to "Config Vars" section and added KEY "CREDS" - That matches my credentials in the project.
+
+9. I added key "PORT" with value "8000" and save changes.
+
+6. In the next step I went back to "Deploy" tab and decided to use manual deploy.
+
+7. The link to my deployed app was shown on screen: [https://chat-boot.herokuapp.com/](https://chat-boot.herokuapp.com/)
+
+<br>
+
+During the deployment I noticed that the program was running extremely slow, or mostly hardly starting up at all. After trying to find a solution to the problem without success I removed the entire project from Heroku and re-deployed it. This time it worked like a charm 👌🏼
 
 ## Possible Future Developments
 If I would have had more time I would have:
