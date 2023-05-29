@@ -303,4 +303,5 @@ Future development will include a model of the ChatGPT with trained with custom 
 
 -   My Mentor Gareth McGirr for valuable feedback and guidance throughout the project.
 -   Code Institute Slack Community for being invaluable knowledge base.
+-   Heroes at Tutor Support.
 -   Special thanks to class mates @Katerina and @Starhigh for taking the time to look through the app and give feedback. 
