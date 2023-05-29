@@ -6,6 +6,7 @@ import datetime
 import colorama
 import time
 import pyfiglet
+import os
 from colorama import Fore, Back, Style, init
 from google.oauth2.service_account import Credentials
 
@@ -125,7 +126,7 @@ class ChatBot:
         """
         try:
             if values.lower() == "exit":
-                print(f'\n{Style.BRIGHT}{green_text} We are exiting the'
+                print(f'\n{Style.BRIGHT}{green_text}We are exiting the'
                       f' terminal'
                       f' for you {self.name}{reset_all}')
                 return True  # "exit" to end the loop
@@ -182,6 +183,7 @@ class ChatBot:
                         log.append_row(sublist)
                     print(f"{Style.BRIGHT}{green_text}ok, we"
                           f" saved it for you.{reset_all}\n")
+                    clear_display()
                     self.data.clear()
                     return False
                 elif answer == 'n':
@@ -190,6 +192,7 @@ class ChatBot:
                     reduction = len(self.data)
                     self.entries -= reduction
                     self.data.clear()
+                    clear_display()
                     break
                 else:
                     raise ValueError("Please answer with 'y' or 'n'.")
@@ -204,6 +207,7 @@ class ChatBot:
         while True:
             user_input = self.get_user_input()
             if user_input.lower() == "exit":
+                clear_display()
                 print(f"{Style.BRIGHT}{green_text}This is"
                       f" your chat log: \n")
                 for row in self.data:
@@ -240,8 +244,10 @@ class FileVault:
                   f" anything in your chat logs.")
             print(f"Let's get you over to the chat terminal to"
                   f" change that!{reset_all}")
+            clear_display()
             bot.chat_main()
         else:
+            clear_display()
             print(f"You have {bot.entries} stored: ")
             log_rows = log.get_all_values()[-bot.entries:]
             total_rows = len(log.get_all_values())
@@ -268,11 +274,13 @@ class FileVault:
                         print(f'{Style.BRIGHT}{green_text}{row_count} '
                               'logs deleted')
                         bot.entries = 0
+                        clear_display()
                         chat_or_log()
                         return True
                     elif choice == 'n':
                         print(f"\n{Style.BRIGHT}{green_text}We will"
                               " keep the log for you!\n")
+                        clear_display()
                         chat_or_log()
 
                     else:
@@ -307,6 +315,7 @@ def chat_or_log():
             if choice == 'c':
                 print(f'\n{Style.BRIGHT}{green_text}Ok, then chat bot it '
                       'is!\n')
+                clear_display()      
                 print('The question should contain at least 10 characters')
                 print(f'and if you would like to leave the program, just'
                       f' type{Style.BRIGHT}{red_text} "exit"{reset_all}.\n')
@@ -326,6 +335,16 @@ def chat_or_log():
             print(f"\n{Style.BRIGHT}{red_text}Error: "
                   f"{str(e)}\n{reset_all}")
 
+def clear_display():
+    """
+    Function to clear out the display before 
+    another part of program appars.
+    """
+    time.sleep(2)  #Time for viewer to read prompt
+    if os.name == 'nt':  # For Windows
+        os.system('cls')
+    else:  # This part is for Linux and OSX
+        os.system('clear')
 
 # Start here
 def startup():
@@ -341,6 +360,7 @@ def startup():
 
     print(pyfiglet.figlet_format("Chat-Bot", font="big"))
     bot.get_name()
+    clear_display()
     print(f'{Style.BRIGHT}{green_text}\nHello {bot.name}'
           ' what would you like to do?\n')
     chat_or_log()
