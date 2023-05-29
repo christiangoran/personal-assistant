@@ -287,6 +287,7 @@ Future development will include a model of the ChatGPT with trained with custom 
 ## Credits
 ### Code
 - Google Sheets API connection method is taken from Love Sandwiches CI Project and gspread documentation 
+- Line 70 - 98 have been created with the code from Love Sandwiches as a template.
 
 ### Learning Resources
 - [Code Institute course and learning platform](https://codeinstitute.net/)
