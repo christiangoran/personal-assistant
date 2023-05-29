@@ -85,6 +85,9 @@ Terminal outputs are displayed in high-contrast colours over black background fo
 
 ## Logic and features
 ### Python Logic
+
+I have programmed according to OOP and the two classes I created is the ChatBot class and the FileVault class. When the chat is chosen an instance of the ChatBot class is created, and when the user want to access the logs in the Google spreadsheet the FileVault class is used.
+
 A flow diagram of the logice for the ChatBot application was created with the use of ![Draw.io](https://app.diagrams.net/)
 ![Flow chart diagram](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/chatbot-flowchart.png)
 You find the PNG version [here](https://github.com/christiangoran/personal-assistant/blob/main/assets/readmefiles/chatbot-flowchart.png)
@@ -204,6 +207,7 @@ If user selects "y"
 - ![colorama](https://pypi.org/project/colorama/) - Used to create colorful terminal outputs.
 - ![time](https://docs.python.org/3/library/time.html) - Used to create the letter printout in the initial part of the program execution.
 - ![pyfiglet](https://pypi.org/project/pyfiglet/) - Used to create ASCII text.
+- ![os](https://docs.python.org/3/library/os.html) - Used for my clear screen function to delay the screen being cleared to give the user time to read the terminal prompt before a new one appears.
 
 ## Testing
 ### Accessibility
